@@ -1,0 +1,83 @@
+header{
+    display: flex;
+    flex-direction: row;
+    
+}
+.a_container{
+    display: flex;
+    justify-content: space-evenly;  
+    width:35.5%;  
+   padding-left: 1%;
+   align-items: center;
+}
+.a_container a{
+    text-decoration: none;
+    color:black;
+    font-family: "Roboto";
+    font-size: 100%;
+
+    padding: 0;
+}
+.a_container a:hover{
+    border-bottom:2px solid #E9672B ;
+}
+.header_container_img{
+    width: 23%;
+    margin-top:0.5% ;
+    text-align: center;
+    padding-left:2.5% ;
+}
+.header_container_img img:hover{
+    width: 42%;
+}
+.a_container_2{
+    align-items: center;
+    margin-top:0.1% ;
+    display: flex;
+    justify-content: space-evenly;  
+    width:34%;
+}
+.a_container_2 a,p{
+    text-decoration: none;
+    color:black;
+    font-family: "Roboto";
+    font-size: 100%;
+    font-weight:420;
+}
+.a_container_2 a:hover, .a_container_2 p:hover{
+    border-bottom:2px solid #E9672B ;
+}
+#languageButton{
+    font-family: roboto;
+    font-size: 100%;
+    font-weight: 420%;
+    border: none;
+    background-color: #E9672B;
+    border-radius:5px ;
+    cursor: pointer;
+}
+#languageButton:hover{
+    border: 1px solid black
+}
+#themeButton{
+    font-family: roboto;
+    font-size: 100%;
+    font-weight: 420%;
+    border: none;
+    background-color: #E9672B;
+    border-radius:5px ;
+    cursor: pointer;
+    
+}
+#themeButton:hover{
+    border: 1px solid black
+}
+.header_container_img_cart{
+    margin: 0.4% 3% 0 0;
+}
+.header_container_img_cart:hover{
+    filter: invert(0.7);
+}
+.burger{
+    display: none;
+}
