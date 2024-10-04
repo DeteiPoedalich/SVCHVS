@@ -1,0 +1,94 @@
+.Main_container6{
+    margin-top:8.15% ;
+    display: flex;
+    overflow-x: hidden;
+    flex-direction: column;
+    width: 100%;
+}
+.Main_container6_text{
+    font-size: 300%;
+    text-align: center;
+    font-family: "roboto";
+}
+.Main_container6_rectangles{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 198.2%;
+    margin: 2% 0 0 0.4%;
+    gap:1.27%;
+    z-index: 10;
+    
+}
+.Main_container6_rectangle1{
+    width: 25%;
+    border: 2px solid #E9672B;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    box-shadow: 8px -8px #e5a3ff;
+}
+.Main_container6_rectangle2{
+    width: 25%;
+    border: 2px solid #225DCA;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    box-shadow: 8px -8px #ffd900;
+}
+.Main_container6_rectangle3{
+    width: 25%;
+    border: 2px solid #242947;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    box-shadow: 8px -8px #80fdc9bd;
+}
+.Main_container6_rectangle4{
+    width: 25%;
+    border: 2px solid #DE4333;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    box-shadow: 8px -8px #b82b00;
+}
+.Main_container6_rectangle5{
+    width: 25%;
+    border: 2px solid #242947;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    box-shadow: 8px -8px #c6d30d;
+}
+.Main_container6_rectangle6{
+    width: 25%;
+    border: 2px solid #DCD6CC;
+    border-radius: 5px;
+    padding: 0 0 1.4% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Main_container6_rectangle6 button{
+    margin-top: 7%;
+    border: none;
+    background-color: #DCD6CC;
+    padding: 5% 0 5% 0;
+    width: 50%;
+    border-radius: 30px;
+    font-family: "Roboto";
+    font-size:100%;
+}
+.stars{
+    margin:8.2% 0 0 8.3%;
+    display: flex;
+    gap:1.8%;
+    width:30%
+}
+.Main_container6_rectangle_review{
+    font-family: "Roboto";
+    font-size:113%;
+    width: 80%;
+    margin: 7% 0 0 8.1%;
+    line-height: 150%;
+}
+.Main_container6_rectangle_who{
+    font-family: "Roboto";
+    font-size:104%;
+    margin: 8.1% 0 0 8.1%;
+}
