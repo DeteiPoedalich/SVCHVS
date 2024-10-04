@@ -1,0 +1,26 @@
+.Main_container7{
+    background-color: #F6CFCA;
+    display: flex;
+    text-align: center;
+    margin-top:14.15% ;
+    flex-direction: column;
+}
+.Main_container7 p{
+    font-family: "roboto";
+    font-size: 550%;
+    width: 50%;
+    margin: 3% 0 0 26%;
+    line-height: 114%;
+    
+}
+.Sponsors{
+    display: flex;
+    margin:5% 0 0 0 ;
+    gap:8.2%;
+    padding-bottom:3% ;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.Sponsors img{
+    height: 100%;
+}
