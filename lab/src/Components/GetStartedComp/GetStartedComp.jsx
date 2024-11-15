@@ -1,10 +1,8 @@
-import { Component } from "react";
 import '../GetStartedComp/GetStarted.css'
-import Main_Container1_img from '../../img/Main_Container1_img.png'
-class GetStarted extends Component{
-    render(){
-        return(
-            
+
+
+export default function GetStarted(){
+    return(
         <div id="Main_container1" className="Main_container1">
             <div className="Main_container1_left_div">               
                     <p id="Curated_Conv" className="Main_container1_top_text">Curated and Convenient</p>
@@ -12,10 +10,8 @@ class GetStarted extends Component{
                     <button id="Main_1_button" className="Main_container1_button">Get Started</button>
             </div>
             <div className="Main_container1_img"> 
-                <img src={Main_Container1_img} alt=""></img>
+                <img src='img/Main_Container1_img.png' alt=""></img>
             </div>
-        </div>            
-        )
-    }
+        </div>
+    )
 }
-export default GetStarted;

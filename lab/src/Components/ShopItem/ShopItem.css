@@ -1,0 +1,48 @@
+.item{
+    width: 17%;
+    height: auto;
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2% 0 2% 1.5%;
+}
+.item img{
+    width: 90%;
+
+}
+.items{
+    display: flex;
+    gap: 1.5%;
+    flex-wrap: wrap;
+}
+.buttons{
+    display: flex;
+    gap:5%;
+    width: 95%;
+    justify-content: center;
+    padding:3% 0 3% 0 ;
+}
+.buttons button{
+    width: 30%;
+    height: 30px;
+    background-color: wheat;
+    border: none;
+}
+.buttons button:hover{
+    background-color: orange;
+}
+.addButtonDiv{
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.addButton{ 
+    height: 40px;
+    width: 40px;
+    border-radius:50px ;
+    border: 2px solid black;
+    font-size: 200%;
+}
