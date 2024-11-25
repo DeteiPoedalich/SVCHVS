@@ -1,5 +1,5 @@
 import '../FooterComp/Footer.css';
-
+import TextField from "../../MUI components/TextField.jsx"
 
 export default function  FooterComp(){    
     return(
@@ -55,6 +55,7 @@ export default function  FooterComp(){
             </div>
             <div className="NEWSLETTER">
                 <p id="footer_Text30">JOIN OUR NEWSLETTER</p>
+                <TextField/>
             </div>
             <div className="window">
                 <img src='img/window.png' alt=""></img>
