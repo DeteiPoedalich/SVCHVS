@@ -69,3 +69,9 @@
     border: 1px solid #888;
     width: 20%; /* Could be more or less, depending on screen size */
   }
+  .List{
+    display: flex;
+    gap:3%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }

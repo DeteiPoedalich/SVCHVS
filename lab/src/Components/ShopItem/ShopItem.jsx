@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../ShopItem/ShopItem.css';
 import FAB from "../../MUI components/FAB.jsx"
-import Divider from "../../MUI components/Divider.jsx"
-import List from "../../MUI components/List.jsx"
-import  SpeedDial  from '../../MUI components/SpeedDial.jsx';
+import {addShopItem,updateShopItem,deleteShopItem} from '../../slices/shopItemsSlice.js'
+import { useDispatch, useSelector } from 'react-redux';
+import {Popup} from "reactjs-popup"
 
 export default function ShopItem() {
+    const selectedItems=useSelector(state=>state.shopItems.items)
+    const dispatch= useDispatch()
     const [cards, addCards] = useState([]);
-    const [cardImg, changeCardImg] = useState("");
-    const [cardText, changeCardText] = useState("");
     const [newCardImg, setNewCardImg] = useState("");
     const [newCardText, setNewCardText] = useState("");
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [selectedCardId, setSelectedCardId] = useState(null);
 
     useEffect(() => {
         const loadCards = () => {
@@ -34,41 +31,24 @@ export default function ShopItem() {
 
         loadCards();
     }, []);
+    const handleDelete=(id)=>{
+        console.log(id)
+        dispatch(deleteShopItem({id}))
+    }
+    const handleAdd=(id,itemImg,itemText)=>{
+        dispatch(addShopItem({id,itemImg,itemText}))
+    }
+    const handleUpdate=(id)=>{
+        console.log(id)
+        dispatch(updateShopItem({id,updatedItem:{itemImg:newCardImg, itemText:newCardText}}))
 
-    const updateCard = (newCardName, newCardText, id) => {
-        addCards((prevState) => {
-            const inx = prevState.findIndex((item) => item.id === id);
-            const prevCard = prevState[inx];
-            const newItem = { ...prevCard, itemImg: newCardName, itemText : newCardText };
-            const updatedCards = [...prevState.slice(0, inx), newItem, ...prevState.slice(inx + 1)];
-            localStorage.setItem('cards', JSON.stringify(updatedCards));
-            return updatedCards;
-        });
-    };
-
-    const handleDeleteCard = (id) => {
-        const newCards = cards.filter((card) => card.id !== id);
-        addCards(newCards);
-        localStorage.setItem('cards', JSON.stringify(newCards));
-    };
-
-    const openAddModal = () => {
-        setShowAddModal(true);
-    };
-
-    const closeAddModal = () => {
-        setShowAddModal(false);
-    };
-
-    const openEditModal = (id) => {
-        setShowEditModal(true);
-        setSelectedCardId(id);
-    };
-
-    const closeEditModal = () => {
-        setShowEditModal(false);
-        setSelectedCardId(null);
-    };
+    }
+    const HandleCardImgInput = (e)=>{
+        setNewCardImg(e.target.value)
+    }
+    const HandleCardTextInput = (e)=>{
+        setNewCardText(e.target.value)
+    }
 
     return (
         <div>
@@ -78,70 +58,55 @@ export default function ShopItem() {
                         <img src={card.itemImg} alt="123" />
                         <p>{card.itemText}</p>
                         <div className="buttons">                           
-                            <List Red={() => openEditModal(card.id)} Del={() => handleDeleteCard(card.id)}/>
-
+                                
+                                <FAB mod={()=>handleAdd(card.id,card.itemImg,card.itemText)}/>                               
+                        
                         </div>
                     </div>
                 ))}
             </div>
-           <div className='addButtonDiv'>
-                <FAB mod={openAddModal}/>
-            </div> 
+            <div>
+                {(!selectedItems||selectedItems.length===0)?(
+                    <p>Nothing found</p>
+                    
+                )
+                :
+                (
+                    <div className='List'>
+                        {selectedItems.map((item)=>
+                            <div className="item" key={item.id}>
+                            <img src={item.itemImg} alt="123" />
+                            <p>{item.itemText}</p>
+                            <div className="buttons">                                                          
+                                    <button onClick={()=>handleDelete(item.id)}></button>
+                                    <Popup trigger ={<button className='button-in-card open-redact-menu'>{("Change properties")}</button>} modal nested>{ 
+                                        close=>( 
+                                                <div className='modal-image'> 
+                                                    <input value="X" type="button" onClick={() => {close()}}>
 
-{showAddModal && (
-    <div className="modal">
-        <div className="modal-content">
-            <h2>Add New Card</h2>
-            <label htmlFor="newCardImg">Image URL:</label>
-            <input type="text" id="newCardImg" value={newCardImg} onChange={(e) => setNewCardImg(e.target.value)} />
-            <label htmlFor="newCardText">Card Title:</label>
-            <input type="text" id="newCardText" value={newCardText} onChange={(e) => setNewCardText(e.target.value)} />
+                                                    </input> 
 
-            <Divider/>
-            <button onClick={closeAddModal}>Close</button>
-            <button onClick={() => {
-                const newCard = { id: cards.length + 1, itemImg: newCardImg, itemText: newCardText };
-                const updatedCards = [...cards, newCard];
-                addCards(updatedCards);
-                localStorage.setItem('cards', JSON.stringify(updatedCards));
-                setNewCardImg("");
-                setNewCardText("");
-                closeAddModal();
-            }}>Save</button>
-        </div>
-    </div>
-)}
-
-
-{showEditModal && (
-    <div className="modal">
-        <div className="modal-content">
-            <h2>Edit Card</h2>
-            <label htmlFor="editCardImg">Image URL:</label>
-            <input type="text" id="editCardImg" value={cardImg || cards.find(card => card.id === selectedCardId)?.itemImg} onChange={(e) => changeCardImg(e.target.value)} />
-            <label htmlFor="editCardText">Card Title:</label>
-            <input type="text" id="editCardText" value={cardText || cards.find(card => card.id === selectedCardId)?.itemText} onChange={(e) => changeCardText(e.target.value)} />
-            <button onClick={closeEditModal}>Close</button>
-            <button onClick={() => {
-                const updatedCards = cards.map(card =>
-                    card.id === selectedCardId
-                        ? {
-                            ...card,
-                            itemImg: cardImg !== "" ? cardImg : card.itemImg,
-                            itemText: cardText !== "" ? cardText : card.itemText
-                        }
-                        : card
-                );
-
-                updateCard(cardImg, cardText, selectedCardId);
-                localStorage.setItem('cards', JSON.stringify(updatedCards));
-                changeCardImg("");
-                changeCardText("");
-                closeEditModal();
-            }}>Save</button>
-        </div>
-    </div>
-)}
+                                                    <div> 
+                                                        <p>Lets set a title</p> 
+                                                        <input type="text" className='modal-input input-title-card' onChange={HandleCardImgInput}/> 
+                                                    </div> 
+                                                    <div> 
+                                                        <p>Lets set a description</p> 
+                                                        <input type="text" className='modal-input input-price-card' onChange={HandleCardTextInput}/> 
+                                                    </div> 
+                                                    <input type="button" value='Save' className='Save-card' onClick={() => handleUpdate(item.id)}/>
+                                                </div> 
+                                            ) 
+                                        } 
+                                    </Popup>
+                            </div>
+                        </div>
+                        )}
+                    </div>
+                )
+            }
+            </div>
+                    
         </div>
     );
 }

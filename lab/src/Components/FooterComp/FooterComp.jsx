@@ -1,5 +1,6 @@
 import '../FooterComp/Footer.css';
 import TextField from "../../MUI components/TextField.jsx"
+import { Link } from 'react-router-dom';
 
 export default function  FooterComp(){    
     return(
@@ -21,8 +22,8 @@ export default function  FooterComp(){
             </div>
             <div className="About">
                 <p id="footer_Text12">ABOUT</p>
-                <a id="footer_Text13" href="">How it Works</a>
-                <a id="footer_Text14" href="">About Feather</a>
+                <Link id="footer_Text13" to='/aboutus'>About Feather</Link>
+                <a id="footer_Text14" href="">How it Works</a>
                 <a id="footer_Text15" href="">Feather Furniture</a>
                 <a id="footer_Text16" href="#Main_container6">Reviews</a>
                 <a id="footer_Text17" href="">Feather for WeWork</a>
@@ -44,7 +45,7 @@ export default function  FooterComp(){
         <div className="footer_right_container">
             <div className="Social_media">
                 <p id="footer_Text29">FEATHER ON SOCIAL MEDIA</p>
-                <div class="Social_media_img">
+                <div className="Social_media_img">
                     <img src="img/mail.png"alt=""></img>
                     <img src='img/pinterest.png' alt=""></img>
                     <img src='img/twitter.png' alt=""></img>
@@ -70,8 +71,92 @@ export default function  FooterComp(){
             <a href="https://github.com/DeteiPoedalich">Github</a>
             <p id="Log_out">Log out</p>
             <p id="reset">Reset Settings</p>
-            <p id="view_users" onclick="window.location.href='Users.html';">View Users</p>
+            <p id="view_users" >View Users</p>
         </div>
     </footer>
     )
 }
+
+{/* {showAddModal && (
+    <div className="modal">
+        <div className="modal-content">
+            <h2>Add New Card</h2>
+            <label htmlFor="newCardImg">Image URL:</label>
+            <input type="text" id="newCardImg" value={newCardImg} onChange={(e) => setNewCardImg(e.target.value)} />
+            <label htmlFor="newCardText">Card Title:</label>
+            <input type="text" id="newCardText" value={newCardText} onChange={(e) => setNewCardText(e.target.value)} />
+
+            <Divider/>
+            <button onClick={closeAddModal}>Close</button>
+            <button onClick={() => {
+                const newCard = { id: cards.length + 1, itemImg: newCardImg, itemText: newCardText };
+                const updatedCards = [...cards, newCard];
+                addCards(updatedCards);
+                localStorage.setItem('cards', JSON.stringify(updatedCards));
+                setNewCardImg("");
+                setNewCardText("");
+                closeAddModal();
+            }}>Save</button>
+        </div>
+    </div>
+)}
+
+
+{showEditModal && (
+    <div className="modal">
+        <div className="modal-content">
+            <h2>Edit Card</h2>
+            <label htmlFor="editCardImg">Image URL:</label>
+            <input type="text" id="editCardImg" value={cardImg || cards.find(card => card.id === selectedCardId)?.itemImg} onChange={(e) => changeCardImg(e.target.value)} />
+            <label htmlFor="editCardText">Card Title:</label>
+            <input type="text" id="editCardText" value={cardText || cards.find(card => card.id === selectedCardId)?.itemText} onChange={(e) => changeCardText(e.target.value)} />
+            <button onClick={closeEditModal}>Close</button>
+            <button onClick={() => {
+                const updatedCards = cards.map(card =>
+                    card.id === selectedCardId
+                        ? {
+                            ...card,
+                            itemImg: cardImg !== "" ? cardImg : card.itemImg,
+                            itemText: cardText !== "" ? cardText : card.itemText
+                        }
+                        : card
+                );
+
+                updateCard(cardImg, cardText, selectedCardId);
+                localStorage.setItem('cards', JSON.stringify(updatedCards));
+                changeCardImg("");
+                changeCardText("");
+                closeEditModal();
+            }}>Save</button>
+        </div>
+    </div>
+)} */}
+
+{/* <div className="modal">
+    //     <div className="modal-content">
+    //         <h2>Edit Card</h2>
+    //         <label htmlFor="editCardImg">Image URL:</label>
+    //         <input type="text" id="editCardImg" value={cardImg || cards.find(card => card.id === selectedCardId)?.itemImg} onChange={(e) => changeCardImg(e.target.value)} />
+    //         <label htmlFor="editCardText">Card Title:</label>
+    //         <input type="text" id="editCardText" value={cardText || cards.find(card => card.id === selectedCardId)?.itemText} onChange={(e) => changeCardText(e.target.value)} />
+    //         <button onClick={closeEditModal}>Close</button>
+    //         <button onClick={() => { */}
+    //             const updatedCards = cards.map(card =>
+    //                 card.id === selectedCardId
+    //                     ? {
+    //                         ...card,
+    //                         itemImg: cardImg !== "" ? cardImg : card.itemImg,
+    //                         itemText: cardText !== "" ? cardText : card.itemText
+    //                     }
+    //                     : card
+    //             );
+
+    //             // updateCard(cardImg, cardText, selectedCardId);
+    //             localStorage.setItem('cards', JSON.stringify(updatedCards));
+    //             changeCardImg("");
+    //             changeCardText("");
+    //             handleUpdate(selectedCardId)
+    //             closeEditModal();
+    //         }}>Save</button>
+    //     </div>
+    // </div>

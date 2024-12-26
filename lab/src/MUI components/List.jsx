@@ -8,8 +8,14 @@ import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from "@mui/icons-material/Delete"
 import InboxIcon from '@mui/icons-material/Inbox';
 import EditIcon from '@mui/icons-material/Edit';
+import {addShopItem,updateShopItem,deleteShopItem} from '../slices/shopItemsSlice.js'
+import { useDispatch } from 'react-redux';
 
 export default function BasicList(props) {
+      const dispatch= useDispatch()
+      const handleDelete=(id)=>{
+          dispatch(deleteShopItem(id))
+      }
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <nav aria-label="main mailbox folders">
@@ -23,7 +29,7 @@ export default function BasicList(props) {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={props.Del}>
+            <ListItemButton >
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
